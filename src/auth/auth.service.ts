@@ -1,9 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { LoginUserDto } from './dto/login-user.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
+import { User } from './entities/user.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class AuthService {
+  constructor(@InjectRepository(User) private readonly repository: Repository<User>) {}
+
   create(createAuthDto: LoginUserDto) {
     return 'This action adds a new auth';
   }
