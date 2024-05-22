@@ -8,11 +8,12 @@ import { envs } from './config';
     AuthModule,
     TypeOrmModule.forRoot({
       type: 'mongodb',
-      url: envs.databaseUrl,
+      url: 'mongodb+srv://root:root@auth-microservice-db.rzmdlaz.mongodb.net/Auth-DB',
+      entities: ['dist/**/models/*/*{.entity.ts,.entity.js}'],
       synchronize: true,
       useUnifiedTopology: true,
-      entities: ['dist/**/models/*/*{.entity.ts,.entity.js}'],
-
+      useNewUrlParser: true,
+      logger: 'debug',
     }),
   ],
   controllers: [],

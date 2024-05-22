@@ -2,9 +2,7 @@ import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { AuthService } from './auth.service';
 import { LoginUserDto } from './dto/login-user.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
 import { RegisterUserDto } from 'src/auth/dto/register-user.dto';
-import { date } from 'joi';
 
 @Controller()
 export class AuthController {
@@ -12,7 +10,7 @@ export class AuthController {
 
   @MessagePattern('auth.register.user')
   authRegisterUser(@Payload() registerDto: RegisterUserDto) {
-    return { message: 'Usuario Registrado', success: true, data: registerDto };
+    return this.authService.registerUser(registerDto);
   }
 
   @MessagePattern('login.user')
