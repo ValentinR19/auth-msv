@@ -15,11 +15,11 @@ export class AuthController {
 
   @MessagePattern('login.user')
   loginUser(@Payload() loginDto: LoginUserDto) {
-    return { message: 'Usuario Logueado', success: true };
+    return this.authService.loginUser(loginDto);
   }
 
-  @MessagePattern('verify.user')
-  verifyUser(@Payload() id: number) {
-    return { message: 'El usuario es valido', success: true };
+  @MessagePattern('auth.verify.user')
+  verifyUser(@Payload() token: string) {
+    return this.authService.verifyToken(token);
   }
 }
